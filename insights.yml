@@ -10,6 +10,8 @@
     - name: Check Insights Client status
       command: insights-client --status
       register: insights_status
+      changed_when: false
+      when: false
 
     - name: Register to the Red Hat Insights Service
       command: insights-client --register --display-name={{ ansible_fqdn }}
