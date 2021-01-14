@@ -53,7 +53,7 @@
     ignore_errors: true
 
   - assert:
-    that:
-      - test_local.status == 200
-      - test_internal.status == 200
-    success_msg: "Awesome website is up and running :)"
+      that:
+        - test_local.status == 200
+        - test_internal.status == 200
+      success_msg: "Awesome website is up and running :)"
