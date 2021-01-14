@@ -9,6 +9,7 @@
           - insights-client
           - python3-requests
           - python3-urllib3
+        enablerepo: rhel-8-for-x86_64-appstream-rpms
         state: '{{ item }}'
       loop:
         - absent
