@@ -8,6 +8,7 @@
 
   tasks:
   - when: command == 'deploy'
+    become: true
     block:
       - name: httpd package is present
         yum:
@@ -22,12 +23,14 @@
 
   - when: command == 'deploy' or command == 'start'
     name: Awesome website is started
+    become: true
     service:
       name: httpd
       state: started
 
   - when: command == 'stop'
     name: Awesome website is stopped
+    become: true
     service:
       name: httpd
       state: stopped
