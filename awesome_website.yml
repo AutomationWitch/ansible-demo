@@ -4,6 +4,7 @@
     index_title: Awesome website
     index_content: Welcome to Ansible Automates !
     index_foot: Hosted on {{ ansible_hostname }}
+    int_address: '{{ ansible_ssh_host }}'
 
   tasks:
   - when: command == 'deploy'
@@ -19,7 +20,7 @@
           owner: apache
           group: apache
 
-  - when: command == 'deploy' or command == 'start'      
+  - when: command == 'deploy' or command == 'start'
     name: Awesome website is started
     service:
       name: httpd
@@ -30,3 +31,18 @@
     service:
       name: httpd
       state: stopped
+
+  - when: command == 'smoke_test'
+    name: Awesome website is responding locally
+    uri:
+      url: 'http://localhost/'
+      return_content: true
+    register: test_local
+
+  - when: command == 'smoke_test'
+    name: Awesome website is responding internally
+    uri:
+      url: 'http://{{ int_address }}/'
+      return_content: true
+    delegate_to: localhost
+    register: test_internal
