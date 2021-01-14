@@ -4,8 +4,8 @@
     index_title: Awesome website
     index_content: Welcome to Ansible Automates !
     index_foot: Hosted on {{ ansible_hostname }}
-    int_address: '{{ inventory_hostname }}'
-    
+    int_address: '{{ ansible_ssh_host }}'
+
   tasks:
   - when: command == 'deploy'
     become: true
@@ -41,6 +41,7 @@
       url: 'http://localhost/'
       return_content: true
     register: test_local
+    ignore_errors: true
 
   - when: command == 'smoke_test'
     name: Awesome website is responding internally
@@ -49,3 +50,10 @@
       return_content: true
     delegate_to: localhost
     register: test_internal
+    ignore_errors: true
+
+  - assert:
+    that:
+      - test_local.status == 200
+      - test_internal.status == 200
+    success_msg: "Awesome website is up and running :)"
