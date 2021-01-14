@@ -4,8 +4,8 @@
     index_title: Awesome website
     index_content: Welcome to Ansible Automates !
     index_foot: Hosted on {{ ansible_hostname }}
-    int_address: '{{ ansible_ssh_host }}'
-
+    int_address: '{{ inventory_hostname }}'
+    
   tasks:
   - when: command == 'deploy'
     become: true
