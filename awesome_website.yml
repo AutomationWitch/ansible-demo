@@ -52,7 +52,8 @@
     register: test_internal
     ignore_errors: true
 
-  - assert:
+  - when: command == 'smoke_test'
+    assert:
       that:
         - test_local.status == 200
         - test_internal.status == 200
