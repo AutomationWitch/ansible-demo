@@ -3,20 +3,26 @@
   become: true
 
   tasks:
-    - name: Install Red Hat Insights Client
+    - name: Ensure Insights Client is properly installed
       package:
-        name: insights-client
-
-    - name: Check Insights Client status
-      command: insights-client --status
-      register: insights_status
-      changed_when: false
-      when: false
+        name:
+          - insights-client
+          - python3-requests
+          - python3-urllib3
+        state: '{{ item }}'
+      loop:
+        - absent
+        - present
+      when: command == 'register'
 
     - name: Register to the Red Hat Insights Service
       command: insights-client --register --display-name={{ ansible_fqdn }}
-      register: insights_register
+      when: command == 'register'
+
+    - name: Check Insights Client status
+      command: insights-client --status
       changed_when: false
 
     - name: Upload latest Insights state
       command: insights-client
+      when: command == 'refresh'
