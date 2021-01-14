@@ -38,16 +38,14 @@
   - when: command == 'smoke_test'
     name: Awesome website is responding locally
     uri:
-      url: 'http://localhost/'
-      return_content: true
+      url: 'http://localhost/index.html'
     register: test_local
     ignore_errors: true
 
   - when: command == 'smoke_test'
     name: Awesome website is responding internally
     uri:
-      url: 'http://{{ int_address }}/'
-      return_content: true
+      url: 'http://{{ int_address }}/index.html'
     delegate_to: localhost
     register: test_internal
     ignore_errors: true
