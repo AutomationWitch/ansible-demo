@@ -28,6 +28,16 @@
       command: insights-client
       when: command == 'refresh'
 
+    - name: Ensure OpenSCAP is installed
+      package:
+        name:
+          - openscap
+          - scap-security-guide
+          - openscap-scanner
+        state: present
+      when: command == compliance
+
+
     - name: Upload latest Compliance state
       command: insights-client --compliance
       when: command == compliance
