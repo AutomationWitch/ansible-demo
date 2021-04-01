@@ -35,9 +35,9 @@
           - scap-security-guide
           - openscap-scanner
         state: present
-      when: command == compliance
+      when: command == 'compliance'
 
 
     - name: Upload latest Compliance state
       command: insights-client --compliance
-      when: command == compliance
+      when: command == 'compliance'
