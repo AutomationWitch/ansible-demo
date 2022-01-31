@@ -2,7 +2,7 @@
   hosts: all
   vars:
     index_title: Awesome website
-    index_content: Welcome to Ansible Automates !
+    index_content: This is awesome !
     index_foot: Hosted on {{ ansible_hostname }}
     int_address: '{{ ansible_ssh_host }}'
 
