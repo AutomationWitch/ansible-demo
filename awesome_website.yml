@@ -46,7 +46,6 @@
     name: Awesome website is responding internally
     uri:
       url: 'http://{{ int_address }}/'
-    delegate_to: localhost
     register: test_internal
     ignore_errors: true
 
