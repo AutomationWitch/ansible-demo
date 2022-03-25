@@ -14,7 +14,7 @@
       loop:
         - absent
         - present
-      when: command == 'register'
+      when: command == 'install'
 
     - name: Register to the Red Hat Insights Service
       command: insights-client --register --display-name={{ ansible_fqdn }}
