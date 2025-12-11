@@ -25,7 +25,7 @@
         validate_certs: no
         organization: '{{ satellite_organization }}'
         content_view: '{{ item }}'
-        filter: '{{ filter_name }}'
+        content_view_filter: '{{ filter_name }}'
         start_date: '{{ filter_date }}'
         types:
           - security
