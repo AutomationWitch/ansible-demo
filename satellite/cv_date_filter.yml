@@ -5,29 +5,31 @@
   tasks:
     - name: CV Filter presence
       redhat.satellite.content_view_filter:
-        server_url: "{{ satellite_url }}"
-        username: "{{ satellite_username }}"
-        password: "{{ satellite_password }}"
+        server_url: '{{ satellite_url }}'
+        username: '{{ satellite_username }}'
+        password: '{{ satellite_password }}'
         validate_certs: no
-        organization: "{{ satellite_organization }}"
-        content_view: "{{ cv_name }}"
-        name: "{{ filter_name }}"
+        organization: '{{ satellite_organization }}'
+        content_view: '{{ item }}'
+        name: '{{ filter_name }}'
         filter_type: erratum
         inclusion: true
         state: '{{ filter_state }}'
+      loop : '{{ cv_list }}'
 
     - name: CV Filter rule presence
       redhat.satellite.content_view_filter_rule:
-        server_url: "{{ satellite_url }}"
-        username: "{{ satellite_username }}"
-        password: "{{ satellite_password }}"
+        server_url: '{{ satellite_url }}'
+        username: '{{ satellite_username }}'
+        password: '{{ satellite_password }}'
         validate_certs: no
-        organization: "{{ satellite_organization }}"
-        content_view: "{{ cv_name }}"
-        filter: "{{ filter_name }}"
-        start_date: "{{ filter_date }}"
+        organization: '{{ satellite_organization }}'
+        content_view: '{{ item }}'
+        filter: '{{ filter_name }}'
+        start_date: '{{ filter_date }}'
         types:
           - security
           - enhancement
           - bugfix
         state: '{{ filter_state }}'
+      loop : '{{ cv_list }}'
