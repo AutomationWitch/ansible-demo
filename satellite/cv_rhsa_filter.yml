@@ -2,7 +2,7 @@
   hosts: localhost
   gather_facts: no
   vars:
-    filter_name: "Include outstanding RHSA list"
+    filter_name: "Include an outstanding RHSA"
 
   tasks:
     - name: CV Filter is {{ filter_state }}
@@ -28,6 +28,6 @@
         organization: '{{ satellite_organization }}'
         content_view: '{{ item }}'
         content_view_filter: '{{ filter_name }}'
-        errata_ids: '{{ errata_list }}'
+        errata_id: '{{ errata_id }}'
         state: '{{ filter_state }}'
       loop : '{{ cv_list }}'
