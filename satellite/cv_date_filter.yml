@@ -10,7 +10,7 @@
         server_url: '{{ satellite_url }}'
         username: '{{ satellite_username }}'
         password: '{{ satellite_password }}'
-        validate_certs: no
+        validate_certs: false
         organization: '{{ satellite_organization }}'
         content_view: '{{ item }}'
         name: '{{ filter_name }}'
@@ -19,12 +19,12 @@
         state: '{{ filter_state }}'
       loop : '{{ cv_list }}'
     
-    - name: CV Filter rule is {{ filter_state }}
+    - name: CV Filter rule is {{ filter_state }} with data limit '{{ filter_date }}'
       redhat.satellite.content_view_filter_rule:
         server_url: '{{ satellite_url }}'
         username: '{{ satellite_username }}'
         password: '{{ satellite_password }}'
-        validate_certs: no
+        validate_certs: false
         organization: '{{ satellite_organization }}'
         content_view: '{{ item }}'
         content_view_filter: '{{ filter_name }}'
