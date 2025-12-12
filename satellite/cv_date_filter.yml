@@ -2,7 +2,7 @@
   hosts: localhost
   gather_facts: no
   vars:
-    filter_name: "Exclude patches after date"
+    filter_name: "Exclude patches starting from date"
 
   tasks:
     - name: CV Filter is {{ filter_state }}
