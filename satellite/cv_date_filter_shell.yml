@@ -1,0 +1,11 @@
+- hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: CV Filter is present
+      command: hammer content-view filter create --organization-id 1 --content-view {{ item }} --name "{{ filter_name }}" --type erratum --inclusion true
+      loop : '{{ cv_list }}'
+
+    - name: name: CV Filter rule is present
+      command: hammer content-view filter rule create --organization-id 1 --content-view {{ item }} --content-view-filter "{{ filter_name }}" --end-date "{{ filter_date }}" --types security,enhancement,bugfix
+      loop : '{{ cv_list }}'
