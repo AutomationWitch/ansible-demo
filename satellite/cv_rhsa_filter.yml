@@ -2,7 +2,7 @@
   hosts: localhost
   gather_facts: no
   vars:
-    filter_name: "Include an outstanding RHSA"
+    filter_name: "Include outstanding RHSA {{ errata_id }}"
 
   tasks:
     - name: CV Filter is {{ filter_state }}
