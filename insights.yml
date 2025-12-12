@@ -1,4 +1,4 @@
-- name: Deploy Insights agent
+- name: Insights Client actions
   hosts: all
   become: true
 
