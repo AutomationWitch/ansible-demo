@@ -1,0 +1,33 @@
+- name: Manage Content View RHSA Filter
+  hosts: localhost
+  gather_facts: no
+  vars:
+    filter_name: "Include outstanding RHSA list"
+
+  tasks:
+    - name: CV Filter is {{ filter_state }}
+      redhat.satellite.content_view_filter:
+        server_url: '{{ satellite_url }}'
+        username: '{{ satellite_username }}'
+        password: '{{ satellite_password }}'
+        validate_certs: false
+        organization: '{{ satellite_organization }}'
+        content_view: '{{ item }}'
+        name: '{{ filter_name }}'
+        filter_type: erratum
+        inclusion: true
+        state: '{{ filter_state }}'
+      loop : '{{ cv_list }}'
+    
+    - name: CV Filter rule is {{ filter_state }}
+      redhat.satellite.content_view_filter_rule:
+        server_url: '{{ satellite_url }}'
+        username: '{{ satellite_username }}'
+        password: '{{ satellite_password }}'
+        validate_certs: false
+        organization: '{{ satellite_organization }}'
+        content_view: '{{ item }}'
+        content_view_filter: '{{ filter_name }}'
+        errata_ids: '{{ errata_list }}'
+        state: '{{ filter_state }}'
+      loop : '{{ cv_list }}'
