@@ -26,7 +26,7 @@
         organization: '{{ satellite_organization }}'
         content_view: '{{ item }}'
         content_view_filter: '{{ filter_name }}'
-        start_date: '{{ filter_date }}'
+        end_date: '{{ filter_date }}'
         types:
           - security
           - enhancement
