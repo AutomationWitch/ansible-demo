@@ -1,6 +1,8 @@
 - name: Manage Content View Date Filter
   hosts: localhost
   gather_facts: no
+  vars:
+    filter_name: "Exclude patches after date"
 
   tasks:
     - name: CV Filter is {{ filter_state }}
@@ -13,7 +15,7 @@
         content_view: '{{ item }}'
         name: '{{ filter_name }}'
         filter_type: erratum
-        inclusion: true
+        inclusion: false
         state: '{{ filter_state }}'
       loop : '{{ cv_list }}'
     
@@ -26,7 +28,7 @@
         organization: '{{ satellite_organization }}'
         content_view: '{{ item }}'
         content_view_filter: '{{ filter_name }}'
-        end_date: '{{ filter_date | string }}'
+        start_date: '{{ filter_date | string }}'
         types:
           - security
           - enhancement
