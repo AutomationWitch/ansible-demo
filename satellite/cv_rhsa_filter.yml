@@ -31,3 +31,4 @@
         errata_id: '{{ errata_id }}'
         state: '{{ filter_state }}'
       loop : '{{ cv_list }}'
+      when: filter_state == 'present'
