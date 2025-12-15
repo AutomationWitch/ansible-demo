@@ -14,3 +14,10 @@
     - name: Apply outstanding fix {{ errata_id }}
       command: dnf update --advisory {{ errata_id }} -y
       when: errata_id is defined
+      register: dnf_result
+      changed_when: 
+        - 'Nothing to do' not in dnf_result.stdout
+        - dnf_result.rc == 0
+      failed_when:
+        - 'Nothing to do' not in dnf_result.stdout
+        - dnf_result.rc != 0
