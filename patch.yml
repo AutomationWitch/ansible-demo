@@ -1,5 +1,6 @@
 - name: Patch System by Errata Type or ID
   hosts: all
+  become: true
 
   tasks:
     - name: Patch errata by type {{ errata_type }}
