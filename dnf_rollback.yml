@@ -1,0 +1,11 @@
+- name: DNF Rollback
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Rollbaxk to transaction ID {{ target_transaction_id }}
+      command: dnf history rollback {{ target_transaction_id }} -y
+      register: rollback_result
+      changed_when: 
+        - "'Nothing to do' not in rollback_result.stdout"
+        - rollback_result.rc == 0
