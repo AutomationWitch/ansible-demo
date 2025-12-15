@@ -16,8 +16,4 @@
       when: errata_id is defined
       register: dnf_result
       changed_when: 
-        - "'Nothing to do' not in dnf_result.stdout"
-        - dnf_result.rc == 0
-      failed_when:
-        - "'Nothing to do' not in dnf_result.stdout"
-        - dnf_result.rc != 0
+        - "'Nothing to do' not in dnf_result.stdout" and dnf_result.rc == 0
