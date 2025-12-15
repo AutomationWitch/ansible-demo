@@ -1,4 +1,4 @@
-- name: Patch System by Type or ID
+- name: Patch System by Errata Type or ID
   hosts: all
 
   tasks:
@@ -6,11 +6,11 @@
       dnf:
         name: *
         state: latest
-        security: '{{ erata_type == "security" | default(omit) }}'
-        bugfix: '{{ erata_type == "bugfix" | default(omit) }}'
+        security: '{{ errata_type == "security" | default(omit) }}'
+        bugfix: '{{ errata_type == "bugfix" | default(omit) }}'
       when: errata_type is defined
       
-    - name: Apply outstanding fix {{ rhsa_id }}
+    - name: Apply outstanding fix {{ errata_id }}
       dnf:
-        name: "{{ rhsa_id }}"
-      when: rhsa_id is defined
+        name: '{{ errata_id }}'
+      when: errata_id is defined
