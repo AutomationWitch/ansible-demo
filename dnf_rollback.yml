@@ -5,7 +5,7 @@
   tasks:
     - name: Rollbaxk to transaction ID {{ target_transaction_id }}
       command: dnf history rollback {{ target_transaction_id }} -y
-      register: rollback_result
+      register: dnf_result
       changed_when: 
-        - "'Nothing to do' not in rollback_result.stdout"
-        - rollback_result.rc == 0
+        - "'Nothing to do' not in dnf_result.stdout"
+        - dnf_result.rc == 0
