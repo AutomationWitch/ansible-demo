@@ -4,7 +4,7 @@
   tasks:
     - name: Patch errata by type {{ errata_type }}
       dnf:
-        name: *
+        name: '*'
         state: latest
         security: '{{ errata_type == "security" | default(omit) }}'
         bugfix: '{{ errata_type == "bugfix" | default(omit) }}'
