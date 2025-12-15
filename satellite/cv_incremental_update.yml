@@ -6,7 +6,6 @@
     - command: > 
         hammer content-view version incremental-update 
         --content-view-version '{{ current_cv_version }}'
-        --organization '{{ satellite_organization }}' 
-        --content-view {{ cv_name }} 
+        --organization '{{ satellite_organization }}'
         --errata-id {{ errata_id }}
         --description 'Outstanding errata {{ errata_id }} added'
