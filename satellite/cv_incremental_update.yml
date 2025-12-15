@@ -5,7 +5,7 @@
   tasks:
     - command: > 
         hammer content-view version incremental-update 
-        --content-view-version {{ current_cv_version }} 
+        --content-view-version '{{ current_cv_version }}'
         --organization '{{ satellite_organization }}' 
         --content-view {{ cv_name }} 
         --errata-id {{ errata_id }}
