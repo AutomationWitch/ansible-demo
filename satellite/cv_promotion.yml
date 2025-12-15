@@ -1,0 +1,16 @@
+- name: Promote Content View
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: CV promoted to {{ target_environments }}
+      redhat.satellite.content_view_version:
+        server_url: '{{ satellite_url }}'
+        username: '{{ satellite_username }}'
+        password: '{{ satellite_password }}'
+        validate_certs: false
+        organization: '{{ satellite_organization }}'
+        content_view: '{{ item }}'
+        current_lifecycle_environment: '{{ current_environement }}'
+        lifecycle_environments: '{{ target_environments }}'
+      loop: '{{ cv_list }}'
