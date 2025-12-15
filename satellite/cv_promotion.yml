@@ -11,6 +11,6 @@
         validate_certs: false
         organization: '{{ satellite_organization }}'
         content_view: '{{ item }}'
-        current_lifecycle_environment: '{{ current_environement }}'
+        current_lifecycle_environment: '{{ current_environment }}'
         lifecycle_environments: '{{ target_environments }}'
       loop: '{{ cv_list }}'
