@@ -40,7 +40,7 @@
 
   handlers:
     - name: publish_new_version
-      redhat.satellite.content_view_filter_rule:
+      redhat.satellite.content_view_version:
         server_url: '{{ satellite_url }}'
         username: '{{ satellite_username }}'
         password: '{{ satellite_password }}'
