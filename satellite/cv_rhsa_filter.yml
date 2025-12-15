@@ -18,6 +18,8 @@
         inclusion: true
         state: '{{ filter_state }}'
       loop : '{{ cv_list }}'
+      notify: publish_new_version
+
     
     - name: CV Filter rule is {{ filter_state }}
       redhat.satellite.content_view_filter_rule:
@@ -32,3 +34,16 @@
         state: '{{ filter_state }}'
       loop : '{{ cv_list }}'
       when: filter_state == 'present'
+      notify: publish_new_version
+
+  handlers:
+    - name: publish_new_version
+      redhat.satellite.content_view_version:
+        server_url: '{{ satellite_url }}'
+        username: '{{ satellite_username }}'
+        password: '{{ satellite_password }}'
+        validate_certs: false
+        organization: '{{ satellite_organization }}'
+        content_view: '{{ item }}'
+        state: present
+      loop : '{{ cv_list }}'
