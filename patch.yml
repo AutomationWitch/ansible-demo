@@ -12,6 +12,5 @@
       when: errata_type is defined
       
     - name: Apply outstanding fix {{ errata_id }}
-      dnf:
-        name: '{{ errata_id }}'
+      command: dnf update --advisory {{ errata_id }} -y
       when: errata_id is defined
