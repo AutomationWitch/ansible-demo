@@ -3,7 +3,7 @@
   become: true
 
   tasks:
-    - name: Rollbaxk to transaction ID {{ target_transaction_id }}
+    - name: Rollback to transaction ID {{ target_transaction_id }}
       command: dnf history rollback {{ target_transaction_id }} -y
       register: dnf_result
       changed_when: 
