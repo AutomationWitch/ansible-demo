@@ -11,7 +11,7 @@
         bugfix: '{{ errata_type == "bugfix" | default(omit) }}'
       when: errata_type is defined
       
-    - name: Apply outstanding fix {{ errata_id }}
+    - name: Apply outstanding fix {{ errata_id | default('') }}
       command: dnf update --advisory {{ errata_id }} -y
       when: errata_id is defined
       register: dnf_result
