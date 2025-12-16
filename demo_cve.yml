@@ -1,0 +1,7 @@
+- hosts: all
+  become: true
+
+  tasks:
+    - dnf:
+        name: mod_auth_openidc-2.4.10-1.el9_6.1
+        state: present
